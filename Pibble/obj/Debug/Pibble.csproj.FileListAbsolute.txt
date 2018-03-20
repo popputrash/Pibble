@@ -1,0 +1,10 @@
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\bin\Debug\Pibble.exe.config
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\bin\Debug\Pibble.exe
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\bin\Debug\Pibble.pdb
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.csprojResolveAssemblyReference.cache
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.Form1.resources
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.Properties.Resources.resources
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.csproj.GenerateResource.Cache
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.csproj.CoreCompileInputs.cache
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.exe
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.pdb
