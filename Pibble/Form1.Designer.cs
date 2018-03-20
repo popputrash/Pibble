@@ -67,6 +67,7 @@
             this.button5.Size = new System.Drawing.Size(40, 30);
             this.button5.TabIndex = 7;
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
@@ -177,6 +178,7 @@
             this.Name = "Form1";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.toolPanel.ResumeLayout(false);
             this.ResumeLayout(false);

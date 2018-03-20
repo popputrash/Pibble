@@ -8,3 +8,13 @@ C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.csproj.GenerateRes
 C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.csproj.CoreCompileInputs.cache
 C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.exe
 C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.pdb
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\bin\Debug\Pibble.exe.config
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\bin\Debug\Pibble.exe
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\bin\Debug\Pibble.pdb
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.csprojResolveAssemblyReference.cache
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.Form1.resources
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.Properties.Resources.resources
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.csproj.GenerateResource.Cache
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.csproj.CoreCompileInputs.cache
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.exe
+C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.pdb

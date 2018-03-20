@@ -7,8 +7,7 @@ using System.Collections.Generic;
 
 namespace Pibble
 {
-    class DrawArea : PictureBox
-    {
+    class DrawArea : PictureBox {
         private Bitmap bmp;
         private Bitmap tmpBmp;
 
@@ -53,69 +52,64 @@ namespace Pibble
         }
 
         public void Draw(int x, int y, Color color) {
-            bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height  - 1) / Util.LimitToRange(scale, 1, -1), color);
+            bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
 
-            Console.WriteLine("draw");
+            this.Image = bmp;
 
-   
             Refresh();
         }
 
-        public void DrawToTemp(int x, int y, Color color)
-        {
+        public void DrawToTemp(int x, int y, Color color) {
             tmpBmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
 
-            Console.WriteLine("drawtemp");
 
-            this.Image = tmpBmp;
         }
 
         public void DrawRectangle(int x1, int y1, int x2, int y2, Color color) {
 
             if (x1 <= x2 && y1 <= y2) {
                 for (int i = x1; i <= x2; i++) {
-                    Draw(i, y1, color);
-                    Draw(i, y2, color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y1, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y2, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
                 for (int i = y1; i <= y2; i++) {
-                    Draw(x1, i, color);
-                    Draw(x2, i, color);
+                    bmp.SetPixel(Util.LimitToRange(x1, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(x2, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
             //Vänster Ner
             else if (x1 >= x2 && y1 <= y2) {
                 for (int i = x2; i <= x1; i++) {
-                    Draw(i, y1, color);
-                    Draw(i, y2, color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y1, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y2, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
                 for (int i = y1; i <= y2; i++) {
-                    Draw(x1, i, color);
-                    Draw(x2, i, color);
+                    bmp.SetPixel(Util.LimitToRange(x1, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(x2, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
             //Höger Upp
             else if (x1 <= x2 && y1 >= y2) {
                 for (int i = x1; i <= x2; i++) {
-                    Draw(i, y1, color);
-                    Draw(i, y2, color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y1, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y2, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
                 for (int i = y2; i <= y1; i++) {
-                    Draw(x1, i, color);
-                    Draw(x2, i, color);
+                    bmp.SetPixel(Util.LimitToRange(x1, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(x2, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
             //Vänster Upp
             else if (x1 >= x2 && y1 >= y2) {
                 for (int i = x2; i <= x1; i++) {
-                    Draw(i, y1, color);
-                    Draw(i, y2, color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y1, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(i, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y2, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
                 for (int i = y2; i <= y1; i++) {
-                    Draw(x1, i, color);
-                    Draw(x2, i, color);
+                    bmp.SetPixel(Util.LimitToRange(x1, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                    bmp.SetPixel(Util.LimitToRange(x2, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(i, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
-
         }
 
         public void DrawRectTooltip(int x1, int y1, int x2, int y2, Color color) {
@@ -165,12 +159,15 @@ namespace Pibble
                     DrawToTemp(x2, i, color);
                 }
             }
+
+            this.Image = tmpBmp;
+
         }
 
         public void DrawLine(int x1, int y1, int x2, int y2, Color color) {
 
             //Höger Ner
-             if (x1 <= x2 && y1 <= y2) {
+            if (x1 <= x2 && y1 <= y2) {
                 int dx = x2 - x1;
                 int dy = y2 - y1;
 
@@ -179,12 +176,12 @@ namespace Pibble
 
                 for (int x = x1; x <= x2; x++) {
                     int y = y1 + dy * (x - x1) / dx;
-                    Draw(x, y, color);
+                    bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
 
             }
-            //Vänster Ner
-            else if (x1 >= x2 && y1 <= y2) {
+           //Vänster Ner
+           else if (x1 >= x2 && y1 <= y2) {
                 int dx = x1 - x2;
                 int dy = y2 - y1;
 
@@ -193,11 +190,11 @@ namespace Pibble
 
                 for (int x = x2; x <= x1; x++) {
                     int y = y1 - dy * (x - x1) / dx;
-                    Draw(x, y, color);
+                    bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
-            //Höger Upp
-            else if (x1 <= x2 && y1 >= y2) {
+           //Höger Upp
+           else if (x1 <= x2 && y1 >= y2) {
                 int dx = x2 - x1;
                 int dy = y1 - y2;
 
@@ -206,11 +203,11 @@ namespace Pibble
 
                 for (int x = x1; x <= x2; x++) {
                     int y = y1 - dy * (x - x1) / dx;
-                    Draw(x, y, color);
+                    bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
                 }
             }
-            //Vänster Upp
-            else if (x1 >= x2 && y1 >= y2) {
+           //Vänster Upp
+           else if (x1 >= x2 && y1 >= y2) {
                 int dx = x1 - x2;
                 int dy = y1 - y2;
 
@@ -219,9 +216,75 @@ namespace Pibble
 
                 for (int x = x2; x <= x1; x++) {
                     int y = y1 + dy * (x - x1) / dx;
-                    Draw(x, y, color);
+                    bmp.SetPixel(Util.LimitToRange(x, 0, Width - 1) / Util.LimitToRange(scale, 1, -1), Util.LimitToRange(y, 0, Height - 1) / Util.LimitToRange(scale, 1, -1), color);
+                }
+
+
+
+            }
+            this.Image = bmp;
+            Refresh();
+        }
+
+        public void DrawLineTooltip(int x1, int y1, int x2, int y2, Color color) {
+
+            tmpBmp = new Bitmap(bmp);
+
+            //Höger Ner
+            if (x1 <= x2 && y1 <= y2) {
+                int dx = x2 - x1;
+                int dy = y2 - y1;
+
+                dx = (dx == 0) ? 1 : dx;
+                dy = (dy == 0) ? 1 : dy;
+
+                for (int x = x1; x <= x2; x++) {
+                    int y = y1 + dy * (x - x1) / dx;
+                    DrawToTemp(x, y, color);
+                }
+
+            }
+           //Vänster Ner
+           else if (x1 >= x2 && y1 <= y2) {
+                int dx = x1 - x2;
+                int dy = y2 - y1;
+
+                dx = (dx == 0) ? 1 : dx;
+                dy = (dy == 0) ? 1 : dy;
+
+                for (int x = x2; x <= x1; x++) {
+                    int y = y1 - dy * (x - x1) / dx;
+                    DrawToTemp(x, y, color);
                 }
             }
+           //Höger Upp
+           else if (x1 <= x2 && y1 >= y2) {
+                int dx = x2 - x1;
+                int dy = y1 - y2;
+
+                dx = (dx == 0) ? 1 : dx;
+                dy = (dy == 0) ? 1 : dy;
+
+                for (int x = x1; x <= x2; x++) {
+                    int y = y1 - dy * (x - x1) / dx;
+                    DrawToTemp(x, y, color);
+                }
+            }
+           //Vänster Upp
+           else if (x1 >= x2 && y1 >= y2) {
+                int dx = x1 - x2;
+                int dy = y1 - y2;
+
+                dx = (dx == 0) ? 1 : dx;
+                dy = (dy == 0) ? 1 : dy;
+
+                for (int x = x2; x <= x1; x++) {
+                    int y = y1 + dy * (x - x1) / dx;
+                    DrawToTemp(x, y, color);
+                }
+            }
+            this.Image = tmpBmp;
+            Refresh();
         }
 
         public void FillStart(int x, int y, Color rColor) {
@@ -232,28 +295,62 @@ namespace Pibble
 
         public void Fill(int x, int y, Color rColor) {
 
-            Stack<Point> pixels = new Stack<Point>();
-            Color tColor = bmp.GetPixel(x, y);
-            pixels.Push(new Point(x, y));
+            if (bmp.GetPixel(x, y).ToArgb() != rColor.ToArgb()) {
+                Stack<Point> pixels = new Stack<Point>();
+                Color tColor = bmp.GetPixel(x, y);
+                pixels.Push(new Point(x, y));
 
+                while (pixels.Count > 0) {
 
-            while (pixels.Count > 0) {
+                    Point a = pixels.Pop();
+                    if (a.X < numOfCellsX && a.X >= 0 && a.Y < numOfCellsY && a.Y >= 0) {
+                        if (bmp.GetPixel(a.X, a.Y) == tColor) {
+                            bmp.SetPixel(a.X, a.Y, rColor);
+                            pixels.Push(new Point(a.X - 1, a.Y));
+                            pixels.Push(new Point(a.X + 1, a.Y));
+                            pixels.Push(new Point(a.X, a.Y - 1));
+                            pixels.Push(new Point(a.X, a.Y + 1));
 
-                Point a = pixels.Pop();
-                if (a.X < numOfCellsX && a.X >= 0 && a.Y < numOfCellsY && a.Y >= 0) {
-                    if (bmp.GetPixel(a.X, a.Y) == tColor) {
-                        bmp.SetPixel(a.X, a.Y, rColor);
-                        pixels.Push(new Point(a.X - 1, a.Y));
-                        pixels.Push(new Point(a.X + 1, a.Y));
-                        pixels.Push(new Point(a.X, a.Y - 1));
-                        pixels.Push(new Point(a.X, a.Y + 1));
-
+                        }
                     }
+
                 }
 
+                this.Image = bmp;
             }
+        }
+
+        public void DrawCircle(int centerX, int centerY, int radius, Color color) {
+
+            centerX = centerX / scale;
+            centerY = centerY / scale;
+
+            int d = (5 - radius * 4) / 4;
+
+            int x = 0;
+
+            int y = radius;
+
+            do {
+                if (centerX + x >= 0 && centerX + x <= numOfCellsX - 1 && centerY + y >= 0 && centerY + y <= numOfCellsY - 1)bmp.SetPixel(centerX + x, centerY + y, color);
+                if (centerX + x >= 0 && centerX + x <= numOfCellsX - 1 && centerY - y >= 0 && centerY - y <= numOfCellsY - 1)bmp.SetPixel(centerX + x, centerY - y, color);
+                if (centerX - x >= 0 && centerX - x <= numOfCellsX - 1 && centerY + y >= 0 && centerY + y <= numOfCellsY - 1)bmp.SetPixel(centerX - x, centerY + y, color);
+                if (centerX - x >= 0 && centerX - x <= numOfCellsX - 1 && centerY - y >= 0 && centerY - y <= numOfCellsY - 1)bmp.SetPixel(centerX - x, centerY - y, color);
+                if (centerX + y >= 0 && centerX + y <= numOfCellsX - 1 && centerY + x >= 0 && centerY + x <= numOfCellsY - 1)bmp.SetPixel(centerX + y, centerY + x, color);
+                if (centerX + y >= 0 && centerX + y <= numOfCellsX - 1 && centerY - x >= 0 && centerY - x <= numOfCellsY - 1)bmp.SetPixel(centerX + y, centerY - x, color);
+                if (centerX - y >= 0 && centerX - y <= numOfCellsX - 1 && centerY + x >= 0 && centerY + x <= numOfCellsY - 1)bmp.SetPixel(centerX - y, centerY + x, color);
+                if (centerX - y >= 0 && centerX - y <= numOfCellsX - 1 && centerY - x >= 0 && centerY - x <= numOfCellsY - 1)bmp.SetPixel(centerX - y, centerY - x, color);
+                if (d < 0) {
+                    d += 2 * x + 1;
+                } else {
+                    d += 2 * (x - y) + 1;
+                    y--;
+                }
+                x++;
+            } while (x <= y);
 
             Refresh();
+
         }
 
         protected override void OnPaint(PaintEventArgs pe)

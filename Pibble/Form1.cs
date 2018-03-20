@@ -14,6 +14,8 @@ namespace Pibble
     {
         DrawArea drawArea;
 
+        int circleRadius;
+
         bool mouseDown;
 
         bool drawRectTooltip;
@@ -28,7 +30,8 @@ namespace Pibble
             Brush,
             Rectangle,
             Line,
-            Fill
+            Fill,
+            Circle
         }
 
         int selectedTool;
@@ -61,7 +64,9 @@ namespace Pibble
                     rectX1 = e.X;
                     rectY1 = e.Y;
                     break;
+                case (int)Tools.Circle:
 
+                    break;
             }
 
         }
@@ -83,6 +88,9 @@ namespace Pibble
                     rectY2 = e.Y;
 
                     drawArea.DrawLine(rectX1, rectY1, rectX2, rectY2, selectedColor);
+
+                    break;
+                case (int)Tools.Circle:
 
                     break;
 
@@ -112,6 +120,16 @@ namespace Pibble
 
                     }
                     break;
+                case (int)Tools.Line:
+
+                    if (mouseDown) {
+
+                        drawArea.DrawLineTooltip(rectX1, rectY1, e.X, e.Y, selectedColor);
+
+                    }
+
+                    break;
+                
             }
         }
 
@@ -128,6 +146,11 @@ namespace Pibble
                 case (int)Tools.Fill:
                     drawArea.FillStart(e.X, e.Y, selectedColor);
                     break;
+
+                case (int)Tools.Circle:
+                    drawArea.DrawCircle(e.X, e.Y, 7, selectedColor);
+                    break;
+                
             }
         }
 
@@ -154,6 +177,14 @@ namespace Pibble
         private void fillButton_Click(object sender, EventArgs e)
         {
             selectedTool = (int)Tools.Fill;
+        }
+
+        private void Form1_Load(object sender, EventArgs e) {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e) {
+            selectedTool = (int)Tools.Circle;
         }
 
         private void colorButton_Click(object sender, EventArgs e)
