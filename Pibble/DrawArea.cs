@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.ComponentModel;
-
+using System.Collections.Generic;
 
 namespace Pibble
 {
@@ -47,6 +47,8 @@ namespace Pibble
 
             cellSize = this.Height / height;
 
+            this.Image = bmp;
+
             Grid = true;
         }
 
@@ -55,7 +57,8 @@ namespace Pibble
 
             Console.WriteLine("draw");
 
-            this.Image = bmp;
+   
+            Refresh();
         }
 
         public void DrawToTemp(int x, int y, Color color)
@@ -221,21 +224,36 @@ namespace Pibble
             }
         }
 
+        public void FillStart(int x, int y, Color rColor) {
+            x = x / scale;
+            y = y / scale;
+            Fill(x, y, rColor);
+        }
+
         public void Fill(int x, int y, Color rColor) {
 
-            if (x < Width && y < Height && x > 0 && y > 0) {
-                Color tColor = bmp.GetPixel(x / scale, y / scale);
-                if (tColor == rColor) {
-                    return;
+            Stack<Point> pixels = new Stack<Point>();
+            Color tColor = bmp.GetPixel(x, y);
+            pixels.Push(new Point(x, y));
+
+
+            while (pixels.Count > 0) {
+
+                Point a = pixels.Pop();
+                if (a.X < numOfCellsX && a.X >= 0 && a.Y < numOfCellsY && a.Y >= 0) {
+                    if (bmp.GetPixel(a.X, a.Y) == tColor) {
+                        bmp.SetPixel(a.X, a.Y, rColor);
+                        pixels.Push(new Point(a.X - 1, a.Y));
+                        pixels.Push(new Point(a.X + 1, a.Y));
+                        pixels.Push(new Point(a.X, a.Y - 1));
+                        pixels.Push(new Point(a.X, a.Y + 1));
+
+                    }
                 }
 
-                Draw(x, y, rColor);
-                Fill(Util.LimitToRange(x + 1, 0, Width - 1), y, rColor);
-                Fill(Util.LimitToRange(x - 1, 0, Width - 1), y, rColor);
-                Fill(x, Util.LimitToRange(y + 1, 0, Height - 1), rColor);
-                Fill(x, Util.LimitToRange(y - 1, 0, Height - 1), rColor);
             }
 
+            Refresh();
         }
 
         protected override void OnPaint(PaintEventArgs pe)

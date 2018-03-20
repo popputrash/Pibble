@@ -126,7 +126,7 @@ namespace Pibble
                     break;
 
                 case (int)Tools.Fill:
-                    drawArea.Fill(e.X, e.Y, selectedColor);
+                    drawArea.FillStart(e.X, e.Y, selectedColor);
                     break;
             }
         }
