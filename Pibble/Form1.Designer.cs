@@ -29,17 +29,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.btnMinimize = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.toolPanel = new System.Windows.Forms.Panel();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
+            this.penButton = new System.Windows.Forms.Button();
             this.fillButton = new System.Windows.Forms.Button();
             this.lineButton = new System.Windows.Forms.Button();
             this.rectButton = new System.Windows.Forms.Button();
             this.colorButton = new System.Windows.Forms.Button();
-            this.penButton = new System.Windows.Forms.Button();
             this.eraserButton = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnMinimize = new System.Windows.Forms.Button();
+            this.paintPanel = new System.Windows.Forms.Panel();
+            this.newBtn = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
             this.toolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -49,14 +52,47 @@
             this.topPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(81)))));
+            this.topPanel.Controls.Add(this.btnSave);
+            this.topPanel.Controls.Add(this.newBtn);
             this.topPanel.Controls.Add(this.btnMinimize);
             this.topPanel.Controls.Add(this.btnClose);
             this.topPanel.Location = new System.Drawing.Point(0, 0);
             this.topPanel.Name = "topPanel";
-            this.topPanel.Size = new System.Drawing.Size(840, 20);
+            this.topPanel.Size = new System.Drawing.Size(841, 20);
             this.topPanel.TabIndex = 3;
-            this.topPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.topPanel_Paint);
             this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.BackgroundImage = global::Pibble.Properties.Resources.MinimizeIcon;
+            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnMinimize.FlatAppearance.BorderSize = 0;
+            this.btnMinimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMinimize.Location = new System.Drawing.Point(801, 0);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(20, 20);
+            this.btnMinimize.TabIndex = 1;
+            this.btnMinimize.UseVisualStyleBackColor = true;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.BackgroundImage = global::Pibble.Properties.Resources.CloseIcon;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(821, 0);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(20, 20);
+            this.btnClose.TabIndex = 0;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // toolPanel
             // 
@@ -73,7 +109,7 @@
             this.toolPanel.Controls.Add(this.eraserButton);
             this.toolPanel.Location = new System.Drawing.Point(0, 20);
             this.toolPanel.Name = "toolPanel";
-            this.toolPanel.Size = new System.Drawing.Size(840, 30);
+            this.toolPanel.Size = new System.Drawing.Size(841, 30);
             this.toolPanel.TabIndex = 4;
             // 
             // button5
@@ -97,6 +133,21 @@
             this.button6.Size = new System.Drawing.Size(40, 30);
             this.button6.TabIndex = 14;
             this.button6.UseVisualStyleBackColor = true;
+            // 
+            // penButton
+            // 
+            this.penButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(126)))));
+            this.penButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("penButton.BackgroundImage")));
+            this.penButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.penButton.FlatAppearance.BorderSize = 0;
+            this.penButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.penButton.Location = new System.Drawing.Point(1, 0);
+            this.penButton.Margin = new System.Windows.Forms.Padding(0);
+            this.penButton.Name = "penButton";
+            this.penButton.Size = new System.Drawing.Size(40, 30);
+            this.penButton.TabIndex = 8;
+            this.penButton.UseVisualStyleBackColor = false;
+            this.penButton.Click += new System.EventHandler(this.penButton_Click);
             // 
             // fillButton
             // 
@@ -125,6 +176,7 @@
             this.lineButton.TabIndex = 12;
             this.lineButton.Text = "Line";
             this.lineButton.UseVisualStyleBackColor = true;
+            this.lineButton.Click += new System.EventHandler(this.lineButton_Click);
             // 
             // rectButton
             // 
@@ -155,21 +207,6 @@
             this.colorButton.UseVisualStyleBackColor = true;
             this.colorButton.Click += new System.EventHandler(this.colorButton_Click);
             // 
-            // penButton
-            // 
-            this.penButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(126)))));
-            this.penButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("penButton.BackgroundImage")));
-            this.penButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.penButton.FlatAppearance.BorderSize = 0;
-            this.penButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.penButton.Location = new System.Drawing.Point(1, 0);
-            this.penButton.Margin = new System.Windows.Forms.Padding(0);
-            this.penButton.Name = "penButton";
-            this.penButton.Size = new System.Drawing.Size(40, 30);
-            this.penButton.TabIndex = 8;
-            this.penButton.UseVisualStyleBackColor = false;
-            this.penButton.Click += new System.EventHandler(this.penButton_Click);
-            // 
             // eraserButton
             // 
             this.eraserButton.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("eraserButton.BackgroundImage")));
@@ -183,44 +220,59 @@
             this.eraserButton.UseVisualStyleBackColor = false;
             this.eraserButton.Click += new System.EventHandler(this.eraserButton_Click);
             // 
-            // btnClose
+            // paintPanel
             // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.BackgroundImage = global::Pibble.Properties.Resources.CloseIcon;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.Location = new System.Drawing.Point(820, 0);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(20, 20);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.paintPanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.paintPanel.BackColor = System.Drawing.Color.White;
+            this.paintPanel.Location = new System.Drawing.Point(2, 50);
+            this.paintPanel.Name = "paintPanel";
+            this.paintPanel.Size = new System.Drawing.Size(836, 458);
+            this.paintPanel.TabIndex = 5;
             // 
-            // btnMinimize
+            // newBtn
             // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.BackgroundImage = global::Pibble.Properties.Resources.MinimizeIcon;
-            this.btnMinimize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnMinimize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.Location = new System.Drawing.Point(800, 0);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(20, 20);
-            this.btnMinimize.TabIndex = 1;
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            this.newBtn.FlatAppearance.BorderSize = 0;
+            this.newBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.newBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.newBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newBtn.Font = new System.Drawing.Font("Roboto", 7F);
+            this.newBtn.ForeColor = System.Drawing.Color.White;
+            this.newBtn.Location = new System.Drawing.Point(0, 0);
+            this.newBtn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.newBtn.Name = "newBtn";
+            this.newBtn.Size = new System.Drawing.Size(35, 20);
+            this.newBtn.TabIndex = 2;
+            this.newBtn.Text = "New";
+            this.newBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.newBtn.UseVisualStyleBackColor = true;
+            this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Roboto", 7F);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(35, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(36, 20);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnSave.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(839, 510);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(126)))));
+            this.ClientSize = new System.Drawing.Size(840, 510);
+            this.Controls.Add(this.paintPanel);
             this.Controls.Add(this.toolPanel);
             this.Controls.Add(this.topPanel);
             this.DoubleBuffered = true;
@@ -249,6 +301,9 @@
         private System.Windows.Forms.Button eraserButton;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
+        private System.Windows.Forms.Panel paintPanel;
+        private System.Windows.Forms.Button newBtn;
+        private System.Windows.Forms.Button btnSave;
     }
 }
 

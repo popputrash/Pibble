@@ -44,14 +44,8 @@ namespace Pibble
             InitializeComponent();
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-
-            drawArea = new DrawArea(200, 200, 16, 16);
-
-            initDrawArea();
              
             selectedColor = Color.Black;
-
-            drawArea.Center(Width, Height);
 
         }
 
@@ -223,6 +217,8 @@ namespace Pibble
 
         }
 
+#region Move handler
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
 
@@ -238,11 +234,7 @@ namespace Pibble
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
-
-        private void topPanel_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
+#endregion
 
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -252,6 +244,22 @@ namespace Pibble
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void newBtn_Click(object sender, EventArgs e)
+        {
+            
+
+            NewFile newFile = new NewFile();
+            newFile.ShowDialog();
+            if (newFile.DialogResult == DialogResult.OK) {
+
+                Controls.Remove(drawArea);
+
+                drawArea = new DrawArea(0,0, newFile.width, newFile.height);
+
+                initDrawArea();
+            }
         }
 
         private void colorButton_Click(object sender, EventArgs e)
@@ -270,18 +278,23 @@ namespace Pibble
         {
             this.Controls.Add(drawArea);
 
-            
+            drawArea.Parent = paintPanel;
 
             drawArea.MouseDown += new MouseEventHandler(drawArea_MouseDown);
             drawArea.MouseUp += new MouseEventHandler(drawArea_MouseUp);
             drawArea.MouseClick += new MouseEventHandler(drawArea_Click);
             drawArea.MouseMove += new MouseEventHandler(drawArea_MouseMove);
+
+            drawArea.Center(paintPanel.Width, paintPanel.Height);
+
         }
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-        }
+            Console.WriteLine("resize");
+            if(drawArea != null)drawArea.Center(Width, Height);
 
+        }
 
     }
 }

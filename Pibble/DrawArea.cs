@@ -44,7 +44,7 @@ namespace Pibble
             bmp = new Bitmap(width, height);
             tmpBmp = bmp;
 
-            cellSize = this.Height / height;
+
 
             this.Image = bmp;
 
@@ -363,15 +363,22 @@ namespace Pibble
             base.OnPaint(pe);
 
             if (Grid) {
-                for (int y = 0; y < Height; y++) {
+
+                cellSize = this.Height / numOfCellsY;
+
+                pe.Graphics.DrawLine(new Pen(Color.Black), new Point(1, 0), new Point(1, Height));
+                pe.Graphics.DrawLine(new Pen(Color.Black), new Point(Width, 0), new Point(Width, Height));
+                pe.Graphics.DrawLine(new Pen(Color.Black), new Point(0, Height), new Point(Width, Height));
+                pe.Graphics.DrawLine(new Pen(Color.Black), new Point(0, 1), new Point(Width, 1));
+                for (int y = 0; y < numOfCellsY; y++) {
 
                     pe.Graphics.DrawLine(new Pen(Color.Black), 0, y * cellSize, numOfCellsX * cellSize, y * cellSize);
 
                 }
 
-                for (int x = 0; x < Height; x++) {
+                for (int x = 0; x < numOfCellsX; x++) {
 
-                    pe.Graphics.DrawLine(new Pen(Color.Black), x * cellSize, 0, x * cellSize, numOfCellsX * cellSize);
+                    pe.Graphics.DrawLine(new Pen(Color.Black), x * cellSize, 0, x * cellSize, numOfCellsY * cellSize);
 
                 }
 
