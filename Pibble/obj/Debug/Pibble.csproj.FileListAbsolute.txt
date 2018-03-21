@@ -18,3 +18,4 @@ C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Deb
 C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.csproj.CoreCompileInputs.cache
 C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.exe
 C:\Users\MaximilianAndersen\Documents\Programmering\Pibble\Pibble\Pibble\obj\Debug\Pibble.pdb
+C:\Users\maxim\Documents\Skola\Pibble\Pibble\obj\Debug\Pibble.NewFile.resources

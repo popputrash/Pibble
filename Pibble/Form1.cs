@@ -24,6 +24,9 @@ namespace Pibble
 
         int rectX1, rectX2, rectY1, rectY2;
 
+        private const int cGrip = 16;
+        private const int cCaption = 32;
+
         enum Tools {
             Pen,
             Eraser,
@@ -40,6 +43,7 @@ namespace Pibble
         {
             InitializeComponent();
             this.DoubleBuffered = true;
+            this.SetStyle(ControlStyles.ResizeRedraw, true);
 
             drawArea = new DrawArea(200, 200, 16, 16);
 
@@ -49,7 +53,26 @@ namespace Pibble
 
             drawArea.Center(Width, Height);
 
-        }       
+        }
+
+
+
+        protected override void WndProc(ref Message m)
+        {
+            if (m.Msg == 0x84) {  // Trap WM_NCHITTEST
+                Point pos = new Point(m.LParam.ToInt32());
+                pos = this.PointToClient(pos);
+                if (pos.Y < cCaption) {
+                    m.Result = (IntPtr)2;  // HTCAPTION
+                    return;
+                }
+                if (pos.X >= this.ClientSize.Width - cGrip && pos.Y >= this.ClientSize.Height - cGrip) {
+                    m.Result = (IntPtr)17; // HTBOTTOMRIGHT
+                    return;
+                }
+            }
+            base.WndProc(ref m);
+        }
 
         private void drawArea_MouseDown(object sender, MouseEventArgs e) {
             mouseDown = true;
@@ -185,6 +208,50 @@ namespace Pibble
 
         private void button5_Click(object sender, EventArgs e) {
             selectedTool = (int)Tools.Circle;
+
+            NewFile newFile = new NewFile();
+            newFile.ShowDialog();
+            if (newFile.DialogResult == DialogResult.OK) {
+                Console.WriteLine("ok");
+                Console.WriteLine(newFile.width + "  " + newFile.height);
+            }
+
+        }
+
+        private void toolPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        private void topPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left) {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void topPanel_Paint(object sender, PaintEventArgs e)
+        {
+            
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void colorButton_Click(object sender, EventArgs e)
@@ -203,8 +270,6 @@ namespace Pibble
         {
             this.Controls.Add(drawArea);
 
-            drawArea.Parent = paintPanel;
-
             
 
             drawArea.MouseDown += new MouseEventHandler(drawArea_MouseDown);
@@ -215,7 +280,6 @@ namespace Pibble
 
         private void Form1_Resize(object sender, EventArgs e)
         {
-            drawArea.Center(paintPanel.Width, paintPanel.Height);
         }
 
 
