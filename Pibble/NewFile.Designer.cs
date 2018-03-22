@@ -29,18 +29,19 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.tbxWidth = new System.Windows.Forms.TextBox();
-            this.tbxHeight = new System.Windows.Forms.TextBox();
-            this.widthUnderline = new System.Windows.Forms.PictureBox();
-            this.heightUnderline = new System.Windows.Forms.PictureBox();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.btnCreate = new System.Windows.Forms.Button();
+            this.heightUnderline = new System.Windows.Forms.PictureBox();
+            this.widthUnderline = new System.Windows.Forms.PictureBox();
+            this.tbxHeight = new System.Windows.Forms.TextBox();
+            this.tbxWidth = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.widthUnderline)).BeginInit();
+            this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heightUnderline)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUnderline)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,7 +50,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(81)))));
             this.panel1.Controls.Add(this.btnClose);
-            this.panel1.Controls.Add(this.panel2);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(243, 20);
@@ -73,13 +73,6 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // panel2
-            // 
-            this.panel2.Location = new System.Drawing.Point(0, 25);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(200, 87);
-            this.panel2.TabIndex = 0;
-            // 
             // panel3
             // 
             this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -102,45 +95,18 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "New canvas";
             // 
-            // tbxWidth
+            // panel4
             // 
-            this.tbxWidth.BackColor = System.Drawing.Color.White;
-            this.tbxWidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbxWidth.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.tbxWidth.Location = new System.Drawing.Point(12, 99);
-            this.tbxWidth.Name = "tbxWidth";
-            this.tbxWidth.Size = new System.Drawing.Size(219, 16);
-            this.tbxWidth.TabIndex = 2;
-            // 
-            // tbxHeight
-            // 
-            this.tbxHeight.BackColor = System.Drawing.Color.White;
-            this.tbxHeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbxHeight.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.tbxHeight.Location = new System.Drawing.Point(12, 141);
-            this.tbxHeight.Name = "tbxHeight";
-            this.tbxHeight.Size = new System.Drawing.Size(219, 16);
-            this.tbxHeight.TabIndex = 4;
-            // 
-            // widthUnderline
-            // 
-            this.widthUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.widthUnderline.Location = new System.Drawing.Point(12, 118);
-            this.widthUnderline.Name = "widthUnderline";
-            this.widthUnderline.Size = new System.Drawing.Size(219, 2);
-            this.widthUnderline.TabIndex = 6;
-            this.widthUnderline.TabStop = false;
-            // 
-            // heightUnderline
-            // 
-            this.heightUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
-            this.heightUnderline.Location = new System.Drawing.Point(12, 160);
-            this.heightUnderline.Name = "heightUnderline";
-            this.heightUnderline.Size = new System.Drawing.Size(219, 2);
-            this.heightUnderline.TabIndex = 7;
-            this.heightUnderline.TabStop = false;
+            this.panel4.BackColor = System.Drawing.Color.White;
+            this.panel4.Controls.Add(this.btnCreate);
+            this.panel4.Controls.Add(this.heightUnderline);
+            this.panel4.Controls.Add(this.widthUnderline);
+            this.panel4.Controls.Add(this.tbxHeight);
+            this.panel4.Controls.Add(this.tbxWidth);
+            this.panel4.Location = new System.Drawing.Point(2, 49);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(239, 175);
+            this.panel4.TabIndex = 2;
             // 
             // btnCreate
             // 
@@ -148,25 +114,61 @@
             this.btnCreate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreate.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreate.ForeColor = System.Drawing.Color.White;
-            this.btnCreate.Location = new System.Drawing.Point(74, 183);
+            this.btnCreate.Location = new System.Drawing.Point(74, 116);
             this.btnCreate.Name = "btnCreate";
             this.btnCreate.Size = new System.Drawing.Size(87, 31);
-            this.btnCreate.TabIndex = 8;
+            this.btnCreate.TabIndex = 18;
             this.btnCreate.Text = "CREATE";
             this.btnCreate.UseVisualStyleBackColor = false;
             this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            // 
+            // heightUnderline
+            // 
+            this.heightUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            this.heightUnderline.Location = new System.Drawing.Point(12, 93);
+            this.heightUnderline.Name = "heightUnderline";
+            this.heightUnderline.Size = new System.Drawing.Size(219, 2);
+            this.heightUnderline.TabIndex = 17;
+            this.heightUnderline.TabStop = false;
+            // 
+            // widthUnderline
+            // 
+            this.widthUnderline.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            this.widthUnderline.Location = new System.Drawing.Point(12, 51);
+            this.widthUnderline.Name = "widthUnderline";
+            this.widthUnderline.Size = new System.Drawing.Size(219, 2);
+            this.widthUnderline.TabIndex = 16;
+            this.widthUnderline.TabStop = false;
+            // 
+            // tbxHeight
+            // 
+            this.tbxHeight.BackColor = System.Drawing.Color.White;
+            this.tbxHeight.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxHeight.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            this.tbxHeight.Location = new System.Drawing.Point(12, 74);
+            this.tbxHeight.Name = "tbxHeight";
+            this.tbxHeight.Size = new System.Drawing.Size(219, 16);
+            this.tbxHeight.TabIndex = 15;
+            // 
+            // tbxWidth
+            // 
+            this.tbxWidth.BackColor = System.Drawing.Color.White;
+            this.tbxWidth.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxWidth.Font = new System.Drawing.Font("Roboto", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxWidth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(158)))), ((int)(((byte)(158)))), ((int)(((byte)(158)))));
+            this.tbxWidth.Location = new System.Drawing.Point(12, 32);
+            this.tbxWidth.Name = "tbxWidth";
+            this.tbxWidth.Size = new System.Drawing.Size(219, 16);
+            this.tbxWidth.TabIndex = 14;
             // 
             // NewFile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(126)))));
             this.ClientSize = new System.Drawing.Size(243, 226);
-            this.Controls.Add(this.btnCreate);
-            this.Controls.Add(this.heightUnderline);
-            this.Controls.Add(this.widthUnderline);
-            this.Controls.Add(this.tbxHeight);
-            this.Controls.Add(this.tbxWidth);
+            this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -177,24 +179,25 @@
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.widthUnderline)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.heightUnderline)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.widthUnderline)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox tbxWidth;
-        private System.Windows.Forms.TextBox tbxHeight;
-        private System.Windows.Forms.PictureBox widthUnderline;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.PictureBox heightUnderline;
-        private System.Windows.Forms.Button btnCreate;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.PictureBox heightUnderline;
+        private System.Windows.Forms.PictureBox widthUnderline;
+        private System.Windows.Forms.TextBox tbxHeight;
+        private System.Windows.Forms.TextBox tbxWidth;
     }
 }
