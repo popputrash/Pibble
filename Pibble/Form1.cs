@@ -7,6 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Imaging;
+using System.Windows.Input;
 
 namespace Pibble
 {
@@ -18,11 +21,15 @@ namespace Pibble
 
         bool mouseDown;
 
+        string fileName;
+
+        bool saved;
+
         bool drawRectTooltip;
 
         Color selectedColor;
 
-        int rectX1, rectX2, rectY1, rectY2;
+        int tempX1, tempX2, tempY1, tempY2;
 
         private const int cGrip = 16;
         private const int cCaption = 32;
@@ -34,7 +41,10 @@ namespace Pibble
             Rectangle,
             Line,
             Fill,
-            Circle
+            Circle,
+            ZoomOut,
+            ZoomIn,
+
         }
 
         int selectedTool;
@@ -44,12 +54,21 @@ namespace Pibble
             InitializeComponent();
             this.DoubleBuffered = true;
             this.SetStyle(ControlStyles.ResizeRedraw, true);
-             
-            selectedColor = Color.Black;
+
+            
 
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+            selectedColor = Color.Black;
+
+            drawArea = new DrawArea();
+
+            createNewFile();
+
+        }
 
         protected override void WndProc(ref Message m)
         {
@@ -68,46 +87,58 @@ namespace Pibble
             base.WndProc(ref m);
         }
 
-        private void drawArea_MouseDown(object sender, MouseEventArgs e) {
+        private void drawArea_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e) {
+
             mouseDown = true;
 
             switch (selectedTool) {
                 case (int)Tools.Rectangle:
+                    
                     drawRectTooltip = true;
-                    rectX1 = e.X;
-                    rectY1 = e.Y;
+                    tempX1 = e.X;
+                    tempY1 = e.Y;
+                    saved = false;
                     break;
                 case (int)Tools.Line:
-                    rectX1 = e.X;
-                    rectY1 = e.Y;
+                    tempX1 = e.X;
+                    tempY1 = e.Y;
+                    saved = false;
                     break;
                 case (int)Tools.Circle:
 
+                    tempX1 = e.X;
+                    tempY1 = e.Y;
+                    saved = false;
                     break;
             }
 
         }
 
-        private void drawArea_MouseUp(object sender, MouseEventArgs e)
+        private void drawArea_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             switch (selectedTool) {
                 case (int)Tools.Rectangle:
 
                     drawRectTooltip = false;
-                    rectX2 = e.X;
-                    rectY2 = e.Y;
+                    tempX2 = e.X;
+                    tempY2 = e.Y;
 
-                    drawArea.DrawRectangle(rectX1, rectY1, rectX2, rectY2, selectedColor);
+                    drawArea.DrawRectangle(tempX1, tempY1, tempX2, tempY2, selectedColor);
 
                     break;
                 case (int)Tools.Line:
-                    rectX2 = e.X;
-                    rectY2 = e.Y;
+                    tempX2 = e.X;
+                    tempY2 = e.Y;
 
-                    drawArea.DrawLine(rectX1, rectY1, rectX2, rectY2, selectedColor);
+                    drawArea.DrawLine(tempX1, tempY1, tempX2, tempY2, selectedColor);
 
                     break;
                 case (int)Tools.Circle:
+
+                    tempX2 = e.X;
+                    tempY2 = e.Y;
+
+                    drawArea.DrawCircle(tempX1,tempY1,tempX2, tempY2, selectedColor);
 
                     break;
 
@@ -116,24 +147,26 @@ namespace Pibble
             mouseDown = false;
         }
 
-        private void drawArea_MouseMove(object sender, MouseEventArgs e)
+        private void drawArea_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             switch (selectedTool) {
                 case (int)Tools.Pen:
                     if (mouseDown) {
                         drawArea.Draw(e.X, e.Y, selectedColor);
+                        saved = false;
                     }
                     break;
                 case (int)Tools.Eraser:
                     if (mouseDown) {
 
                         drawArea.Draw(e.X, e.Y, Color.Transparent);
+                        saved = false;
                     }
                     break;
                 case (int)Tools.Rectangle:
                     if (mouseDown) {
 
-                        drawArea.DrawRectTooltip(rectX1, rectY1, e.X, e.Y, selectedColor);
+                        drawArea.DrawRectTooltip(tempX1, tempY1, e.X, e.Y, selectedColor);
 
                     }
                     break;
@@ -141,33 +174,53 @@ namespace Pibble
 
                     if (mouseDown) {
 
-                        drawArea.DrawLineTooltip(rectX1, rectY1, e.X, e.Y, selectedColor);
+                        drawArea.DrawLineTooltip(tempX1, tempY1, e.X, e.Y, selectedColor);
 
                     }
 
                     break;
-                
+               
+                case (int)Tools.Circle:
+
+                    if (mouseDown) {
+
+                        drawArea.DrawCircleTooltip(tempX1, tempY1, e.X, e.Y, selectedColor);
+
+                    }
+
+                    break;
+
             }
         }
 
-        private void drawArea_Click(object sender, MouseEventArgs e) {
+        private void drawArea_Click(object sender, System.Windows.Forms.MouseEventArgs e) {
             switch (selectedTool) {
                 case (int)Tools.Pen:
-                    drawArea.Draw(e.X, e.Y, selectedColor);              
+                    drawArea.Draw(e.X, e.Y, selectedColor);
+                    saved = false;
                     break;
 
                 case (int)Tools.Eraser:
                     drawArea.Draw(e.X, e.Y, Color.Transparent);
+                    saved = false;
                     break;
 
                 case (int)Tools.Fill:
                     drawArea.FillStart(e.X, e.Y, selectedColor);
+                    saved = false;
                     break;
 
-                case (int)Tools.Circle:
-                    drawArea.DrawCircle(e.X, e.Y, 7, selectedColor);
+                case (int)Tools.ZoomOut:
+
+                    drawArea.ZoomOut(e.X, e.Y);
+
                     break;
-                
+                case (int)Tools.ZoomIn:
+
+                    drawArea.ZoomIn(e.X, e.Y);
+
+                    break;
+
             }
         }
 
@@ -196,19 +249,9 @@ namespace Pibble
             selectedTool = (int)Tools.Fill;
         }
 
-        private void Form1_Load(object sender, EventArgs e) {
-
-        }
-
         private void button5_Click(object sender, EventArgs e) {
-            selectedTool = (int)Tools.Circle;
 
-            NewFile newFile = new NewFile();
-            newFile.ShowDialog();
-            if (newFile.DialogResult == DialogResult.OK) {
-                Console.WriteLine("ok");
-                Console.WriteLine(newFile.width + "  " + newFile.height);
-            }
+            selectedTool = (int)Tools.Circle;
 
         }
 
@@ -227,7 +270,7 @@ namespace Pibble
         [System.Runtime.InteropServices.DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private void topPanel_MouseDown(object sender, MouseEventArgs e)
+        private void topPanel_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left) {
                 ReleaseCapture();
@@ -248,18 +291,14 @@ namespace Pibble
 
         private void newBtn_Click(object sender, EventArgs e)
         {
+
+            createNewFile();
             
+        }
 
-            NewFile newFile = new NewFile();
-            newFile.ShowDialog();
-            if (newFile.DialogResult == DialogResult.OK) {
-
-                Controls.Remove(drawArea);
-
-                drawArea = new DrawArea(0,0, newFile.width, newFile.height);
-
-                initDrawArea();
-            }
+        private void rectButton_MouseHover(object sender, EventArgs e)
+        {
+            toolTipRect.Show("Draws a rectangle, click and drag", rectButton);
         }
 
         private void colorButton_Click(object sender, EventArgs e)
@@ -274,19 +313,81 @@ namespace Pibble
 
         }
 
+        private void btnSave_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+
+        }
+
         private void initDrawArea()
         {
             this.Controls.Add(drawArea);
 
             drawArea.Parent = paintPanel;
 
-            drawArea.MouseDown += new MouseEventHandler(drawArea_MouseDown);
-            drawArea.MouseUp += new MouseEventHandler(drawArea_MouseUp);
-            drawArea.MouseClick += new MouseEventHandler(drawArea_Click);
-            drawArea.MouseMove += new MouseEventHandler(drawArea_MouseMove);
+            drawArea.MouseDown += new System.Windows.Forms.MouseEventHandler(drawArea_MouseDown);
+            drawArea.MouseUp += new System.Windows.Forms.MouseEventHandler(drawArea_MouseUp);
+            drawArea.MouseClick += new System.Windows.Forms.MouseEventHandler(drawArea_Click);
+            drawArea.MouseMove += new System.Windows.Forms.MouseEventHandler(drawArea_MouseMove);
 
             drawArea.Center(paintPanel.Width, paintPanel.Height);
 
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            saveNewFile();
+        }
+
+        private void zoomOutbBtn_Click(object sender, EventArgs e) {
+
+            selectedTool = (int)Tools.ZoomOut;
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Title = "Open imaeg";
+            openFileDialog.Filter = "bmp files (*.bmp)|*.bmp";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK) {
+
+                if(drawArea.Image == null && !saved) {
+
+                    if (MessageBox.Show("The open image is not saved, would you like to save?", "Pibble", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+
+                        saveNewFile();
+
+                    };                 
+
+                }
+
+                drawArea.Dispose();
+
+                drawArea = new DrawArea(0, 0, new Bitmap(openFileDialog.FileName).Width, new Bitmap(openFileDialog.FileName).Height);
+
+                drawArea.SetBitmap(new Bitmap(openFileDialog.FileName));
+
+                initDrawArea();
+
+            }
+
+        }
+
+        private void paintPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void zoomInButton_Click(object sender, EventArgs e)
+        {
+            selectedTool = (int)Tools.ZoomIn;
+        }
+
+        private void zoomOutButton_Click(object sender, EventArgs e)
+        {
+            selectedTool = (int)Tools.ZoomOut;
         }
 
         private void Form1_Resize(object sender, EventArgs e)
@@ -296,5 +397,40 @@ namespace Pibble
 
         }
 
+        private void createNewFile() { 
+            saved = true;
+
+            NewFile newFile = new NewFile();
+            newFile.ShowDialog();
+
+            if (newFile.DialogResult == DialogResult.OK) {
+
+                drawArea.Dispose();
+
+                drawArea = new DrawArea(0, 0, newFile.width, newFile.height);
+
+                initDrawArea();
+
+            }
+
+        }
+
+        private void saveNewFile() {
+
+            saved = true;
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+
+            saveFileDialog.FileName = "unknown.bmp";
+
+            saveFileDialog.Filter = "Bitmap Image (.bmp)|*.bmp";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK) {
+
+                drawArea.GetBitmap().Save(saveFileDialog.FileName, ImageFormat.Bmp);
+                fileName = saveFileDialog.FileName;
+            }
+
+        }
     }
 }

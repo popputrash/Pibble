@@ -27,13 +27,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.topPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.newBtn = new System.Windows.Forms.Button();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.toolPanel = new System.Windows.Forms.Panel();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.circleButton = new System.Windows.Forms.Button();
+            this.zoomInButton = new System.Windows.Forms.Button();
             this.penButton = new System.Windows.Forms.Button();
             this.fillButton = new System.Windows.Forms.Button();
             this.lineButton = new System.Windows.Forms.Button();
@@ -41,8 +45,8 @@
             this.colorButton = new System.Windows.Forms.Button();
             this.eraserButton = new System.Windows.Forms.Button();
             this.paintPanel = new System.Windows.Forms.Panel();
-            this.newBtn = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.toolTipRect = new System.Windows.Forms.ToolTip(this.components);
+            this.zoomOutButton = new System.Windows.Forms.Button();
             this.topPanel.SuspendLayout();
             this.toolPanel.SuspendLayout();
             this.SuspendLayout();
@@ -52,6 +56,7 @@
             this.topPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.topPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(81)))));
+            this.topPanel.Controls.Add(this.button1);
             this.topPanel.Controls.Add(this.btnSave);
             this.topPanel.Controls.Add(this.newBtn);
             this.topPanel.Controls.Add(this.btnMinimize);
@@ -61,6 +66,61 @@
             this.topPanel.Size = new System.Drawing.Size(841, 20);
             this.topPanel.TabIndex = 3;
             this.topPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.topPanel_MouseDown);
+            // 
+            // button1
+            // 
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Roboto", 7F);
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(70, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(48, 20);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Open";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.FlatAppearance.BorderSize = 0;
+            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Roboto", 7F);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(35, 0);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(36, 20);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Save";
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btnSave_MouseClick);
+            // 
+            // newBtn
+            // 
+            this.newBtn.FlatAppearance.BorderSize = 0;
+            this.newBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.newBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
+            this.newBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newBtn.Font = new System.Drawing.Font("Roboto", 7F);
+            this.newBtn.ForeColor = System.Drawing.Color.White;
+            this.newBtn.Location = new System.Drawing.Point(0, 0);
+            this.newBtn.Margin = new System.Windows.Forms.Padding(0);
+            this.newBtn.Name = "newBtn";
+            this.newBtn.Size = new System.Drawing.Size(35, 20);
+            this.newBtn.TabIndex = 2;
+            this.newBtn.Text = "New";
+            this.newBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.newBtn.UseVisualStyleBackColor = true;
+            this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
             // 
             // btnMinimize
             // 
@@ -99,8 +159,9 @@
             this.toolPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.toolPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(35)))), ((int)(((byte)(126)))));
-            this.toolPanel.Controls.Add(this.button5);
-            this.toolPanel.Controls.Add(this.button6);
+            this.toolPanel.Controls.Add(this.zoomOutButton);
+            this.toolPanel.Controls.Add(this.circleButton);
+            this.toolPanel.Controls.Add(this.zoomInButton);
             this.toolPanel.Controls.Add(this.penButton);
             this.toolPanel.Controls.Add(this.fillButton);
             this.toolPanel.Controls.Add(this.lineButton);
@@ -112,27 +173,33 @@
             this.toolPanel.Size = new System.Drawing.Size(841, 30);
             this.toolPanel.TabIndex = 4;
             // 
-            // button5
+            // circleButton
             // 
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Location = new System.Drawing.Point(281, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(40, 30);
-            this.button5.TabIndex = 15;
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.circleButton.FlatAppearance.BorderSize = 0;
+            this.circleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.circleButton.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.circleButton.ForeColor = System.Drawing.Color.White;
+            this.circleButton.Location = new System.Drawing.Point(240, 0);
+            this.circleButton.Name = "circleButton";
+            this.circleButton.Size = new System.Drawing.Size(40, 30);
+            this.circleButton.TabIndex = 15;
+            this.circleButton.Text = "Circ";
+            this.circleButton.UseVisualStyleBackColor = true;
+            this.circleButton.Click += new System.EventHandler(this.button5_Click);
             // 
-            // button6
+            // zoomInButton
             // 
-            this.button6.FlatAppearance.BorderSize = 0;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Location = new System.Drawing.Point(241, 0);
-            this.button6.Margin = new System.Windows.Forms.Padding(0);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(40, 30);
-            this.button6.TabIndex = 14;
-            this.button6.UseVisualStyleBackColor = true;
+            this.zoomInButton.BackgroundImage = global::Pibble.Properties.Resources.ZoomInIcon;
+            this.zoomInButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomInButton.FlatAppearance.BorderSize = 0;
+            this.zoomInButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.zoomInButton.Location = new System.Drawing.Point(280, 0);
+            this.zoomInButton.Margin = new System.Windows.Forms.Padding(0);
+            this.zoomInButton.Name = "zoomInButton";
+            this.zoomInButton.Size = new System.Drawing.Size(40, 30);
+            this.zoomInButton.TabIndex = 14;
+            this.zoomInButton.UseVisualStyleBackColor = true;
+            this.zoomInButton.Click += new System.EventHandler(this.zoomInButton_Click);
             // 
             // penButton
             // 
@@ -141,7 +208,7 @@
             this.penButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.penButton.FlatAppearance.BorderSize = 0;
             this.penButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.penButton.Location = new System.Drawing.Point(1, 0);
+            this.penButton.Location = new System.Drawing.Point(0, 0);
             this.penButton.Margin = new System.Windows.Forms.Padding(0);
             this.penButton.Name = "penButton";
             this.penButton.Size = new System.Drawing.Size(40, 30);
@@ -155,7 +222,7 @@
             this.fillButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.fillButton.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fillButton.ForeColor = System.Drawing.Color.White;
-            this.fillButton.Location = new System.Drawing.Point(201, 0);
+            this.fillButton.Location = new System.Drawing.Point(200, 0);
             this.fillButton.Name = "fillButton";
             this.fillButton.Size = new System.Drawing.Size(40, 30);
             this.fillButton.TabIndex = 13;
@@ -169,7 +236,7 @@
             this.lineButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lineButton.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lineButton.ForeColor = System.Drawing.Color.White;
-            this.lineButton.Location = new System.Drawing.Point(161, 0);
+            this.lineButton.Location = new System.Drawing.Point(160, 0);
             this.lineButton.Margin = new System.Windows.Forms.Padding(0);
             this.lineButton.Name = "lineButton";
             this.lineButton.Size = new System.Drawing.Size(40, 30);
@@ -184,13 +251,14 @@
             this.rectButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rectButton.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rectButton.ForeColor = System.Drawing.Color.White;
-            this.rectButton.Location = new System.Drawing.Point(121, 0);
+            this.rectButton.Location = new System.Drawing.Point(120, 0);
             this.rectButton.Name = "rectButton";
             this.rectButton.Size = new System.Drawing.Size(40, 30);
             this.rectButton.TabIndex = 11;
             this.rectButton.Text = "Rect";
             this.rectButton.UseVisualStyleBackColor = true;
             this.rectButton.Click += new System.EventHandler(this.rectButton_Click);
+            this.rectButton.MouseHover += new System.EventHandler(this.rectButton_MouseHover);
             // 
             // colorButton
             // 
@@ -198,7 +266,7 @@
             this.colorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.colorButton.Font = new System.Drawing.Font("Roboto", 8F);
             this.colorButton.ForeColor = System.Drawing.Color.White;
-            this.colorButton.Location = new System.Drawing.Point(81, 0);
+            this.colorButton.Location = new System.Drawing.Point(80, 0);
             this.colorButton.Margin = new System.Windows.Forms.Padding(0);
             this.colorButton.Name = "colorButton";
             this.colorButton.Size = new System.Drawing.Size(40, 30);
@@ -213,7 +281,7 @@
             this.eraserButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.eraserButton.FlatAppearance.BorderSize = 0;
             this.eraserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.eraserButton.Location = new System.Drawing.Point(41, 0);
+            this.eraserButton.Location = new System.Drawing.Point(40, 0);
             this.eraserButton.Name = "eraserButton";
             this.eraserButton.Size = new System.Drawing.Size(40, 30);
             this.eraserButton.TabIndex = 9;
@@ -230,41 +298,21 @@
             this.paintPanel.Name = "paintPanel";
             this.paintPanel.Size = new System.Drawing.Size(836, 458);
             this.paintPanel.TabIndex = 5;
+            this.paintPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.paintPanel_Paint);
             // 
-            // newBtn
+            // zoomOutButton
             // 
-            this.newBtn.FlatAppearance.BorderSize = 0;
-            this.newBtn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.newBtn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
-            this.newBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.newBtn.Font = new System.Drawing.Font("Roboto", 7F);
-            this.newBtn.ForeColor = System.Drawing.Color.White;
-            this.newBtn.Location = new System.Drawing.Point(0, 0);
-            this.newBtn.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            this.newBtn.Name = "newBtn";
-            this.newBtn.Size = new System.Drawing.Size(35, 20);
-            this.newBtn.TabIndex = 2;
-            this.newBtn.Text = "New";
-            this.newBtn.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.newBtn.UseVisualStyleBackColor = true;
-            this.newBtn.Click += new System.EventHandler(this.newBtn_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.FlatAppearance.BorderSize = 0;
-            this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(20)))));
-            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Font = new System.Drawing.Font("Roboto", 7F);
-            this.btnSave.ForeColor = System.Drawing.Color.White;
-            this.btnSave.Location = new System.Drawing.Point(35, 0);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(36, 20);
-            this.btnSave.TabIndex = 3;
-            this.btnSave.Text = "Save";
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
-            this.btnSave.UseVisualStyleBackColor = true;
+            this.zoomOutButton.BackgroundImage = global::Pibble.Properties.Resources.ZoomOutIcon;
+            this.zoomOutButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.zoomOutButton.FlatAppearance.BorderSize = 0;
+            this.zoomOutButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.zoomOutButton.Location = new System.Drawing.Point(320, 0);
+            this.zoomOutButton.Margin = new System.Windows.Forms.Padding(0);
+            this.zoomOutButton.Name = "zoomOutButton";
+            this.zoomOutButton.Size = new System.Drawing.Size(40, 30);
+            this.zoomOutButton.TabIndex = 16;
+            this.zoomOutButton.UseVisualStyleBackColor = true;
+            this.zoomOutButton.Click += new System.EventHandler(this.zoomOutButton_Click);
             // 
             // Form1
             // 
@@ -291,8 +339,8 @@
         #endregion
         private System.Windows.Forms.Panel topPanel;
         private System.Windows.Forms.Panel toolPanel;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button circleButton;
+        private System.Windows.Forms.Button zoomInButton;
         private System.Windows.Forms.Button penButton;
         private System.Windows.Forms.Button fillButton;
         private System.Windows.Forms.Button lineButton;
@@ -304,6 +352,9 @@
         private System.Windows.Forms.Panel paintPanel;
         private System.Windows.Forms.Button newBtn;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.ToolTip toolTipRect;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button zoomOutButton;
     }
 }
 

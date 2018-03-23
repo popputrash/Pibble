@@ -17,8 +17,6 @@ namespace Pibble
         private static string heightPlaceholder = "Height in px";
         private static string widthErrPlaceholder = "Only numbers allowed!";
         private static string heightErrPlaceholder = "Only numbers allowed!";
-        private bool errorWidth;
-        private bool errorHeight;
 
         public int width, height;
 
